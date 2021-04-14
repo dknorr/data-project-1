@@ -19,18 +19,22 @@ Using my "static Textract service," I was able to add an additional column to th
 ## How It Does It
 The pipeline checks for RDS databases and tables and creates them if needed. Thus, as long as the RDS instance is well formed, there is no additional work to be done. When the Docker image is run, it requires the following environmental variables to be passed in. The SNS_ARN and ROLE_ARN variables were only needed for Textract and thus are not needed in the final version.
 
--ACCESS_KEY=(IAM Programmatic access to S3, Textract(not needed in the end), RDS)
--BUCKET_NAME=(Bucket where files for Textract are uploaded)
--SECRET_KEY=(Secret Key for Access Key)
--SNS_ARN=(Used for Textract)
--ROLE_ARN=(Role for Textract that has SNS permissions)
--REGION=(Region used for all AWS services in this pipeline section)
--RDS_URL=(URL for Publically available RDS instance with appropriate security group to allow external programmatic access)
--RDS_USER=(User in abovce RDS instance)
--RDS_PASSWORD=(Password for above RDS instance)
+- ACCESS_KEY=(IAM Programmatic access to S3, Textract(not needed in the end), RDS)
+- BUCKET_NAME=(Bucket where files for Textract are uploaded)
+- SECRET_KEY=(Secret Key for Access Key)
+- SNS_ARN=(Used for Textract)
+- ROLE_ARN=(Role for Textract that has SNS permissions)
+- REGION=(Region used for all AWS services in this pipeline section)
+- RDS_URL=(URL for Publically available RDS instance with appropriate security group to allow external programmatic access)
+- RDS_USER=(User in abovce RDS instance)
+- RDS_PASSWORD=(Password for above RDS instance)
 
 Build the container:
+```
     docker build -t dp1 .
+```
 
 Run the dp1 image and pass in the environment variables (in a file called .env in this example)
+```
     docker run --env-file .env -it dp1
+```
