@@ -9,7 +9,7 @@ The plan was to upload the codes pdf to Amazon S3, trigger an Amazon Textract Jo
 
 The pipeline then takes the parsed codes, uploads them as tables to an RDS intance, and then takes the yearly shipping data and uploads that to RDS with the shorthands replaced with the appropriate mappings.
 
-![Diagram for data project original plan](https://github.com/dknorr/data-project-1/blob/master/images/dp1-original-plan?raw=true)
+![Diagram for data project original plan](https://github.com/dknorr/data-project-1/blob/master/images/dp1-original-plan.png?raw=true)
 
 ## What Happened
 I very quickly exceeded the limits of free tier Textract usage while I figured out how to integrate it. As such, I disabled the Lambda trigger and commented out the section of the pipeline code that called Textract. With a hefty bill from AWS in hand, I ended up mocking out the Textract service by making the results statically available in a directory. This is how I was able to continue my project and check that the rest of my system worked without incurring additional charges. The code that was supposed to be used in my Lambda function is available in lambda.py. 
